@@ -145,3 +145,4 @@ FETCH FIRST 3 ROWS ONLY;
 
 ![Similarity Search Comparison](../imgs/similarity_search_comparison.png)
 
+![Similarity Search Examples](../imgs/similarity_search_example.png)
