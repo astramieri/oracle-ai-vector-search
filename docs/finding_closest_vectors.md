@@ -141,3 +141,7 @@ FETCH FIRST 3 ROWS ONLY;
 
 ![Finding the Closest Vectors to a Given Vector](../imgs/closest_vector_1.png)
 
+## Comparison
+
+![Similarity Search Comparison](../imgs/similarity_search_comparison.png)
+
