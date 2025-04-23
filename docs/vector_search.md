@@ -50,3 +50,10 @@ Two approaches to generate vector embeddings:
 In order to use pre-trained open source embeddings models (or your own embedding models) within the Oracle DB, you need to use models that are compatible with the **Open Neural Network Exchange Standard (ONNX)**, also known as Onyx.
 
 Oracle Database implements an Onyx runtime directly within the database, and this is going to allow you to generate vector embeddings directly inside the Oracle Database using SQL. 
+
+- 23ai SQL function to chunk and generate embeddings:
+    - ```VECTOR_CHUNK```
+    - ```VECTOR_EMBEDDING```
+- 23ai PL/SQL packages to generate embeddings:
+    - ```DBMS_VECTOR```
+    - ```DBMS_VECTOR_CHAIN```
