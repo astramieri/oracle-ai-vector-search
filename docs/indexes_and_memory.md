@@ -21,6 +21,8 @@ Oracle AI Vector Search supports two types of indexes:
 - **Neighbor Partition Vector Index**
     - *Inverted File Flat (IVF) Index* is the only type supported
     - They balances high search quality with reasonable speed
+    - Better suited for larget datasets
+    - Supports DML operations
 
 **NOTE.** You can only create **one type of vector index per vector column.** 
 
@@ -34,9 +36,11 @@ Oracle AI Vector Search supports two types of indexes:
 
 ## Vector Pool Area
 
-In order to be able to use vector indexes, you need to enable the Vector Pool Area with ```VECTOR_MEMORY_SIZE``` parameter.
+The Vector Pool is a memory area in the System Global Area (SGA) designed to HNSW vector indexes and associated metadata. 
 
-```ALTER SYSTEM SET vector_memory_size=1G SCOPE=BOTH;```
+It is configured using the ```VECTOR_MEMORY_SIZE``` parameter. It can be modified at CDB level (Container Database) or PDB level (Pluggable Database).
+
+```ALTER SYSTEM SET VECTOR_MEMORY_SIZE=1G SCOPE=BOTH;```
 
 **Note.**    Large vector indexes do need lots of RAM and RAM constrains the vector index size. You should use IVF indexes when there is not enough RAM. IVF index is used both the buffer cache as well as disk.
 
