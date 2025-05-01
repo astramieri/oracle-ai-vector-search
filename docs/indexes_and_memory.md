@@ -18,6 +18,7 @@ Oracle AI Vector Search supports two types of indexes:
     - In a RAC environment you cannot create HNSW index
     - Store in memory (SGA) 
     - Best choice when data fits in memory
+    - NOTE: after a database restart, **HNSW indexes must be rebuilt!**
 - **Neighbor Partition Vector Index**
     - *Inverted File Flat (IVF) Index* is the only type supported
     - They balances high search quality with reasonable speed
@@ -138,3 +139,7 @@ Note. If the distance metric used in a query differs from the one specified duri
 ORDER BY VECTOR_DISTANCE (embedding, to_vector('[0,1,1,0,0]', COSINE)
    FECTH APPROXIMATE FIRST 3 ROWS ONLY;
 ```
+
+## Monitor Index Accuracy
+
+![Monitor Index Accuracy](../imgs/index_accuracy.png)
