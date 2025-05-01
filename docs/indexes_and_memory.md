@@ -76,3 +76,65 @@ The In-Memory size formula is:
 *NOTE: 1.3 is an approximation for the overhead and graph layers*
 
 ![In-Memory Indexes Size](../imgs/indexes_memory_size.png)
+
+## Creating a HHSW index
+
+HNSW parameters:
+- ```NIGHBORS```
+    - max connections per vector (1-2048)
+- ```EFCONSTRUCTION```
+    - number of closest vector candidates considered during each step of HNSW index creation (1-65535)
+    - a high value improves accuracy but can increase creation time
+- ```TARGET ACCURACY``` 
+    - desired accuracy percentage (0-100)
+    - a value of 90 means the algorithm aims for 90% accuracy while balancing speed
+
+```
+CREATE VECTOR INDEX galaxies_hnsw_idx 
+    ON galaxies (embedding)
+    ORGANIZATION INMEMORY NEIGHBOR GRAPH 
+    DISTANCE COSINE 
+    WITH TARGET ACCURACY 95
+    PARAMETERS (TYPE HNSW, NEIGHBORS 40, EFCONSTRUCTION 500);
+```
+
+## Creating a IVF index
+
+IVF parameters:
+- ```NEIGHBOR PARTITIONS```
+    - number of centroid partitions
+    - a high value allows the algorithm to serach more partitions, leading to higher accuracy
+- ```SAMPLE_PER_PARTITION```
+    - training sample size
+- ```TARGET ACCURACY``` 
+    - desired accuracy percentage (0-100)
+    - a value of 95 means the algorithm aims for 95% accuracy while balancing speed
+
+```
+CREATE VECTOR INDEX galaxies_ivf_idx 
+    ON galaxies (embedding)
+    ORGANIZATION NEIGHBOR PARTITIONS 
+    DISTANCE COSINE 
+    WITH TARGET ACCURACY 95
+    PARAMETERS (TYPE IVF, NEIGHBOR PARTITIONS 100);
+```
+
+## HNSW indexes vs IVF indexes
+
+![HNSW indexes vs IVF indexes](../imgs/hnsw_vs_ivf.png)
+
+## Using Vector Indexes
+
+- Must use ```APPROX``` or ```APPROXIMATE``` keyword
+- Distance function **must match index**
+- All vectors must have same dimensions
+
+Note. If the distance metric used in a query differs from the one specified during index creation, the system performs an exact match instead of using the vector index.
+
+```
+  SELECT name
+    FROM galaxies
+   WHERE name <> 'NGC1073'
+ORDER BY VECTOR_DISTANCE (embedding, to_vector('[0,1,1,0,0]', COSINE)
+   FECTH APPROXIMATE FIRST 3 ROWS ONLY;
+```
