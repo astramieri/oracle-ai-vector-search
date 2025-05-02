@@ -25,3 +25,7 @@ RAG real world applications:
     - You can generate a prompt and send it to a LLM
     
 ![RAG workflow](../imgs/rag_workflow.png)
+
+## RAG Application 
+
+![RAG Application](../imgs/rag_application.png)
