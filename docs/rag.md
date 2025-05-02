@@ -26,6 +26,7 @@ RAG real world applications:
     
 ![RAG workflow](../imgs/rag_workflow.png)
 
-## RAG Application 
+## RAG Application
 
 ![RAG Application](../imgs/rag_application.png)
+
