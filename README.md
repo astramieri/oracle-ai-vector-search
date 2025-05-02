@@ -18,7 +18,7 @@ Note-taking repository for Oracle AI Vector Search Professional exam (1Z0-184-25
 
 ## Oracle Database 23ai: Vector Search Deep Dive
 
-Work in progress...
+- [Retrievel Augumented Generation (RAG)](./docs/rag.md)
 
 ## Oracle Database 23ai: Select AI
 
