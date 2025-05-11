@@ -34,7 +34,7 @@ CREATE TABLE my_books (
 
 CREATE TABLE vector_store (
     file_id       INTEGER,
-    embed_id      NUMBER ,
+    embed_id      NUMBER,
     embed_data    VARCHAR2(4000),
     embed_vector  VECTOR    
 );
@@ -93,15 +93,7 @@ SELECT
     JSON_VALUE(c.column_value, '$.chunk_data' RETURNING NUMBER) as data
 FROM my_books b
      DBMS_VECTOR_CHAIN.UTL_TO_CHUNKS (
-        DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content),
-        JSON('
-            {
-                "by" : "words",
-                "max" : "300",
-                "split" : "sentence",
-                "normalize" : "all"
-            }
-        ')) c
+        DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content)) c
 WHERE ROWNUM < 4;
 ```
 
@@ -115,4 +107,45 @@ BEGIN
         model_name => 'TINYBERT_MODEL'
     );
 END;
+```
+
+## 6. Create vector embedding
+
+```
+INSERT INTO vector_store (
+    file_id,
+    embed_id,
+    embed_data,
+    embed_vector   
+)
+    SELECT 
+        id,
+        embed_id,
+        text_chunk,
+        embed_vector
+    FROM 
+        my_books b
+        CROSS JOIN TABLE (
+            DBMS_VECTOR_CHAIN.UTL_TO_EMBEDDINGS(
+                DBMS_VECTOR_CHAIN.UTL_TO_CHUNKS(
+                    DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content),
+                    JSON('{
+                        "by" : "words",
+                        "max" : "300",
+                        "split" : "sentece",
+                        "normalize" : "all"
+                    }')),
+                JSON('{
+                    "provider" : "database",
+                    "model" : "TINYBERT_MODEL"
+                    }')
+            )
+        ) t
+        CROSS JOIN JSON_TABLE (
+            t.column_value, '$[*]' COLUMNS (
+                embed_id NUMBER PATH '$.embed_id',
+                text_chunk VARCHAR2(4000) APTH '$.embed_data',
+                embed_vector CLOB PATH '$.embed_vector'
+            )
+        ) e
 ```
