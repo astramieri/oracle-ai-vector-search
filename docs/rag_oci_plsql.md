@@ -93,7 +93,15 @@ SELECT
     JSON_VALUE(c.column_value, '$.chunk_data' RETURNING NUMBER) as data
 FROM my_books b
      DBMS_VECTOR_CHAIN.UTL_TO_CHUNKS (
-        DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content)) c
+        DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content),
+        JSON('
+            {
+                "by" : "words",
+                "max" : "300",
+                "split" : "sentence",
+                "normalize" : "all"
+            }
+        ')) c
 WHERE ROWNUM < 4;
 ```
 
