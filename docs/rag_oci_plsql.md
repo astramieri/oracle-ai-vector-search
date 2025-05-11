@@ -96,3 +96,15 @@ FROM my_books b
         DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content)) c
 WHERE ROWNUM < 4;
 ```
+
+## 5. Load ONNX model
+
+```
+BEGIN
+    DBMS_DATA_MINING.LOAD_ONNX_MODEL(
+        directory  => 'DIR',
+        file_name  => 'tinybert.onnx',
+        model_name => 'TINYBERT_MODEL'
+    );
+END;
+```
