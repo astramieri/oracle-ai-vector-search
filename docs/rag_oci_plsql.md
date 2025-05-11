@@ -20,3 +20,22 @@ Process Overview:
     - Simple User Interface example using Streamlit
 - Step 5
     - Invoke the Chain
+
+## 1. Create tables
+
+```
+CREATE TABLE my_books (
+    file_id       INTEGER,
+    file name     VARCHAR2(900),
+    file_size     INTEGER,
+    file_type     VARCHAR2(100),
+    file_content  BLOB        
+);
+
+CREATE TABLE vector_store (
+    file_id       INTEGER,
+    embed_id      NUMBER ,
+    embed_data    VARCHAR2(4000),
+    embed_vector  VECTOR    
+);
+```
