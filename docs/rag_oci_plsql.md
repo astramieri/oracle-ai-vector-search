@@ -154,5 +154,22 @@ INSERT INTO vector_store (
 
 ```
 SELECT
-    VECTOR_EMBEDDING(TINYBERT_MODEL USING 'What is the result of the release version' as data) as embedding
+    VECTOR_EMBEDDING(tinybert_model USING 'What is the result of the release version' as data) as embedding
+```
+
+8. Perform the vector search
+
+```
+WITH query_vector AS (
+    SELECT VECTOR_EMBEDDING(tinybert_model USING 'List some limitations' AS DATA) as embedding
+)
+    SELECT 
+        embed_id,
+        embed_data
+    FROM
+        vector_store,
+        query_vector
+    ORDER BY 
+        VECTOR_DISTANCE(embed_vector, query_vector.embedding, COSINE)
+    FETCH APPORX FIRST 4 ROWS ONLY;
 ```
