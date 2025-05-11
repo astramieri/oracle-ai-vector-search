@@ -149,3 +149,11 @@ INSERT INTO vector_store (
             )
         ) e
 ```
+
+7. Vectorize the user question
+
+```
+SELECT
+    VECTOR_EMBEDDING(TINYBERT_MODEL USING 'What is the result of the release version' as data) as embedding
+FROM DUAL
+```
