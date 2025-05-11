@@ -39,3 +39,60 @@ CREATE TABLE vector_store (
     embed_vector  VECTOR    
 );
 ```
+
+## 2. Load the document
+
+```
+INSERT INTO my_books (
+    file_name,
+    file_size,
+    file_type,
+    file_content
+) VALUES (
+    '23ai_release_notes.pdf',
+    DBMS_LOG.GETLENGTH(TO_BLOB(B_FILENAME('DIR', ''23ai_release_notes.pdf'))),
+    'PDF',
+    TO_BLOB(B_FILENAME('DIR', ''23ai_release_notes.pdf'))
+)
+```
+
+## 3. Convert the document to plain text
+
+```
+DBMS_VECTOR_CHAIN.UTL_TO_TEXT (
+    DATA   IN CLOB | BLOB
+    PARAMS IN JSON default NULL
+) RETURN CLOB;
+```
+
+## 4. Split the text into chunks
+
+```
+DBMS_VECTOR_CHAIN.UTL_TO_CHUNKS (
+    DATA   IN CLOB | BLOB
+    PARAMS IN JSON DEFAULT NULL
+) RETURN VECTOR_ARRAY_T;
+```
+
+It returns an array of ```CLOBs``` where each ```CLOB``` contains a chunk along with the metadata in JSON format.
+
+```
+{
+    "chunk_id" : NUMBER,
+    "chunk_offset" : NUMBER,
+    "chunk_length" : NUMBER,
+    "chunk_data" : VARCHAR2(4000)
+}
+```
+
+```
+SELECT
+    JSON_VALUE(c.column_value, '$.chunk_id' RETURNING NUMBER) as id,
+    JSON_VALUE(c.column_value, '$.chunk_offset' RETURNING NUMBER) as offset,
+    JSON_VALUE(c.column_value, '$.chunk_length' RETURNING NUMBER) as length,
+    JSON_VALUE(c.column_value, '$.chunk_data' RETURNING NUMBER) as data
+FROM my_books b
+     DBMS_VECTOR_CHAIN.UTL_TO_CHUNKS (
+        DBMS_VECTOR_CHAIN.UTL_TO_TEXT(b.file_content)) c
+WHERE ROWNUM < 4;
+```
