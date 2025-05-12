@@ -15,7 +15,7 @@ INSERT INTO t1 VALUES
     ('[1, 2, 3, 4, 5]');
 ```
 
-**Note**. No comparison operations are allowed between vectors!
+**IMPORTANT**. No comparison operations are allowed between vectors!
 
 ```
 SELECT v FROM t1 WHERE v = '[2.9]';
