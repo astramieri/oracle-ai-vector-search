@@ -13,25 +13,29 @@ Vector Indexes use these techniques to *drastically* reduce the search space:
 
 Oracle AI Vector Search supports two types of indexes:
 - **In-Memory Neighbor Graph Vector Index**
-    - *Hierarchical Navigable Small World (HNSW)* is the only type supported
+    - Hierarchical Navigable Small World (HNSW) is the only type supported
     - HNSW are very efficient for vector approximate similarity search
     - In a RAC environment you cannot create HNSW index
     - Store in memory (SGA) 
     - Best choice when data fits in memory
-    - NOTE: after a database restart, **HNSW indexes must be rebuilt!**
+    - After a database restart **HNSW indexes must be rebuilt!**
 - **Neighbor Partition Vector Index**
-    - *Inverted File Flat (IVF) Index* is the only type supported
+    - Inverted File Flat (IVF) Index is the only type supported
     - They balances high search quality with reasonable speed
     - Better suited for larget datasets
     - Supports DML operations
 
-**NOTE.** You can only create **one type of vector index per vector column.** 
+**NOTE. You can only create one type of vector index per vector column.** 
 
-*Example 1 (HNSW). Immagine highways (upper layers) connecting major cities and local roads (lower layers) for detailed navigation. HNSW starts the search on "highways" to quicly get close to the target, the uses "local roads" for precise results.*
+### Example 1 (HNSW)
+
+Immagine highways (upper layers) connecting major cities and local roads (lower layers) for detailed navigation. HNSW starts the search on "highways" to quicly get close to the target, the uses "local roads" for precise results.
 
 ![Hierarchical Navigable Small World (HNSW)](../imgs/vector_index_hnsw.png)
 
-*Example 2 (IVF). Think of a libraray with books organized by subject (partitions). If you're looking for a specific topic, you only need to search the relevant section, not the entire library.*
+### Example 2 (IVF)
+
+Think of a libraray with books organized by subject (partitions). If you're looking for a specific topic, you only need to search the relevant section, not the entire library.
 
 ![Inverted File Flat (IVF)](../imgs/vector_index_ivf.png)
 
@@ -58,9 +62,11 @@ Oracle AI Vector Search supports:
 - FLOAT32
 - FLOAT64
 
-Oracle AI Vector Search supports vectors with up to 65,535 dimensions.
+Oracle AI Vector Search supports vectors with up to 65535 dimensions.
 
-*In this example, we're using the FLOAT32 format, which is 4 bytes in size. And so the size would be the number of dimensions multiplied by how many bytes for that format.*
+### Example
+
+In this example, we're using the FLOAT32 format, which is 4 bytes in size. The size would be the number of dimensions multiplied by how many bytes for that format.
 
 ![Vector Size](../imgs/vector_size.png)
 
@@ -81,7 +87,7 @@ The In-Memory size formula is:
 ## Creating a HHSW index
 
 HNSW parameters:
-- ```NIGHBORS```
+- ```NEIGHBORS```
     - max connections per vector (1-2048)
 - ```EFCONSTRUCTION```
     - number of closest vector candidates considered during each step of HNSW index creation (1-65535)
