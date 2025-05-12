@@ -2,25 +2,27 @@
 
 One of the biggest benefits of Oracle AI Vector Search is that **semantic search on unstructured data** can be combined with **relational search on business data**. This eliminates ata fragmentation between multiple systems.
 
-Oracle AI Vector Search also supports **Retrieval Augmented Generation (RAG)**, a breakthrough generative AI technique that combines large language models (LLMs) and private business data. RAG provides higher accuracy and avoids having to expose private data by including it in the large language model training data.
+Oracle AI Vector Search also supports **Retrieval Augmented Generation (RAG)**, a breakthrough generative AI technique that combines large language models (LLMs) and private business data. RAG provides higher accuracy and avoids having to expose private data by including it in the LLM training data.
 
 ## Vector Data Type
 
 **Vector Data Type** was introduced in Oracle Database 23ai. 
 
-Vector Data Type allows you to store vector embeddings alongside other business data. In other words, it allows you to apply semantic queries on business data.
+Vector Data Type allows you to store vector embeddings alongside other business data. In other words, it allows you to apply **semantic queries on business data**.
 
 ## Vector Embeddings
 
 Vector embeddings are **mathematical representations of data points**. They assign mathematical representations based on meaning and context of unstructured data.
 
-Vector embeddings can be used to **represent almost any type of data**, including text, audio, or visual such as pictures. And they are used in **proximity searches**.
+Vector embeddings can be used to **represent almost any type of data**, including text, audio, or visual such as pictures. 
+
+Vector embeddings are used in **proximity searches**.
 
 In order to get vector embeddings, you can either use ONNX embedding machine learning models or access third-party REST APIs.
 
 ## Similarity Search
 
-Vector data is usually unevenly distributed and clustered into groups that are semantically related. Doing a similarity search based on a given query vector is equivalent to retrieving the **k nearest vectors** to your query vector in your vector space. **It is important to find the relative order of distances rather than the actual distance.**
+Vector data is usually unevenly distributed and clustered into groups that are semantically related. Doing a similarity search based on a given query vector is equivalent to retrieving the ***k* nearest vectors** to your query vector in your vector space. **It is important to find the relative order of distances rather than the actual distance.**
 
 Similarity searches tend to get data from one or more clusters, depending on the value of the query vector and the fetch size. Searches can be approximate or specific.
 
@@ -30,7 +32,7 @@ Similarity searches tend to get data from one or more clusters, depending on the
 
 ## Vector Embeddings Models
 
-Vector Embedding Models allow you to **assign meaning** to a word, or a sentence, or the pixels in an image, or perhaps audio. They allows you to **quantify features or dimensions**.
+Vector Embedding Models allow you to **assign meaning** to a word, or a sentence, or the pixels in an image, or perhaps audio. They allows you to quantify **features or dimensions**.
 
 Most modern vector embeddings use a **transformer model**. Depending on the type of your data, you can use different pre-trained open source models to create vector embeddings. Each model determines **the number of dimensions for your vectors**.
 
@@ -47,7 +49,7 @@ Two approaches to generate vector embeddings:
 - Outside the Oracle DB
 - Within the Oracle DB (ONNX)
 
-In order to use pre-trained open source embeddings models (or your own embedding models) within the Oracle DB, you need to use models that are compatible with the **Open Neural Network Exchange Standard (ONNX)**, also known as Onyx.
+In order to use pre-trained open source embeddings models (or your own embedding models) within the Oracle DB, you need to use models that are compatible with the **Open Neural Network Exchange (ONNX)** standard, also known as Onyx.
 
 Oracle Database implements an Onyx runtime directly within the database, and this is going to allow you to generate vector embeddings directly inside the Oracle Database using SQL. 
 
