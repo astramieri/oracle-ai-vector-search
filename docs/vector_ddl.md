@@ -47,8 +47,8 @@ You cannot define ```VECTOR``` columns in/as:
 - Check Constraints
 - Default Value
 - Modify Column
-- MSSM tablespace (only SYS user can craete VECTORs ad Basicfiles in MSSM tablespace)
+- MSSM tablespace (only SYS user can create VECTORs ad Basicfiles in MSSM tablespace)
 - Continuous Query Notification (CQN)
-- Non-vector indexes such as B-tree, Reverse Key, TExt, Spatial Indexes, etc.
+- Non-vector indexes such as B-tree, Reverse Key, Text, Spatial Indexes, etc.
 
 **Note.**  Oracle does not support ```distinct```, ```count distinct```, ```order by```, ```group by```, ```join``` condition, or comparison operators such as less than, greater than, or equal to with vector columns.
