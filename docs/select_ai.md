@@ -42,9 +42,9 @@ begin
             "provider": "OCI",
             "credential_name": "OCI_CRED",
             "object_list": [
-                {"owher": "MOVIESTREAM", "name": "movies"},
-                {"owher": "MOVIESTREAM", "name": "streams"},
-                {"owher": "MOVIESTREAM", "name": "actors"}
+                {"owner": "MOVIESTREAM", "name": "movies"},
+                {"owner": "MOVIESTREAM", "name": "streams"},
+                {"owner": "MOVIESTREAM", "name": "actors"}
             ],
             "region": "eu-milan-1"
         }'     
