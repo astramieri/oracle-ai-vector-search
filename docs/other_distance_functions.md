@@ -8,6 +8,8 @@
 - ```COSINE_DISTANCE(v1, v2)```
     - i.e. Cosine Distance
     - shorthand: ```v1 <=> v2```
-- ```INNER_PRODUCT(v1, v2)```
+- ```INNER_PRODUCT(v1, v2) * (-1)```
     - i.e. Dot Product Distance
-    - shorthand (negative): ```v1 <#> v2``` 
+    - shorthand: ```v1 <#> v2``` 
+- ```HAMMING_DISTANCE(v1, v2)```
+    - i.e. Hamming Distance
