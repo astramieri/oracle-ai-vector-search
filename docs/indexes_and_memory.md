@@ -110,7 +110,7 @@ CREATE VECTOR INDEX galaxies_hnsw_idx
 IVF parameters:
 - ```NEIGHBOR PARTITIONS```
     - number of centroid partitions
-    - a high value allows the algorithm to serach more partitions, leading to higher accuracy
+    - a high value allows the algorithm to search more partitions, leading to higher accuracy
 - ```SAMPLE_PER_PARTITION```
     - training sample size
 - ```TARGET ACCURACY``` 
