@@ -1,6 +1,6 @@
 # Embedding Models
 
-Vecto embeddings are created by **embedding models** to represent the unstructured data.
+Vector embeddings are created by **embedding models** to represent the unstructured data.
 
 The ```VECTOR_EMBEDDING()``` function allows you to generate vectors within the database. It supports the **Open Neural Net Exchange (ONNX)** framework.
 
