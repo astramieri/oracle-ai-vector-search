@@ -84,7 +84,7 @@ The In-Memory size formula is:
 
 ![In-Memory Indexes Size](../imgs/indexes_memory_size.png)
 
-## Creating a HHSW index
+## Creating a HNSW index
 
 HNSW parameters:
 - ```NEIGHBORS```
