@@ -6,6 +6,7 @@ Process Overview:
     - Load the document
     - Transform the document to text
     - Split the text into chunks
+        - Splitting text into chunks ensures that each individual segment is small enough to be processed by the LLM without truncation or loss of context. This is done to comply with the input limits set by embedding models. This is essential for maintaining the integrity of the information and generating accurate responses.
 - Step 2
     - Embedding Models and Vectorization
         - Load multiple ONNX models into the database
