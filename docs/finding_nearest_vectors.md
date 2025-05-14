@@ -40,7 +40,7 @@ SELECT TO_NUMBER(
     - A smaller angle indicates greater similarity
     - While cosine distance measures how different two vectors are, cosine similarity measures how similar two vectors are
 - Dot Product Similarity
-    - Multiply the size of each vector but the cosing of their angle
+    - Multiply the size of each vector but the cos of their angle
     - Equivalent to sum of vector's coordinates
     - Larger means more similar, smaller means less similar
 - Manhattan Distance
