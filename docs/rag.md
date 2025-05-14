@@ -18,8 +18,8 @@ RAG real world applications:
     - You can generate those embeddings either inside or outside of the DB
 2. **Store Vector Embeddings**
     - You store the vector embeddings and associated unstructured data 
-    - You might want to also create vector indexes
-3. **Combine Similarity and Kwyord Searches**
+    - (Optional) You create vector indexes
+3. **Combine Similarity and Keyord Searches**
     - You can use Oracle AI Vector Search native SQL operations
 4. **RAG inference**
     - You can generate a prompt and send it to a LLM
