@@ -1,9 +1,9 @@
 # Other Vector Functions
 
 - **Vector Constructors**
-    - ```TO_VECTOR()```
+    - ```VECTOR()```
         - Converts a string or CLOB into a vector
-        - Synonym: ```VECTOR()```
+        - Synonym: ```TO_VECTOR()```
 - **Vector Serializers**
     - ```VECTOR_SERIALIZE()```
         - Converts a vector to a string or CLOB
