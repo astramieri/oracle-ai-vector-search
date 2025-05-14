@@ -31,7 +31,7 @@ In the case of Euclidean distances, comparing squared distances is equivalent to
 ```
 SELECT docID
 FROM vector_tab
-ORDER BY VECTOR_DISTANCE(embedding, :query_vector)
+ORDER BY VECTOR_DISTANCE(embedding, :query_vector, EUCLIDEAN_SQUARED)
 FETCH FIRST 10 ROWS ONLY;
 ```
 
